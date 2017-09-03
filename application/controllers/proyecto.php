@@ -5,7 +5,7 @@ class Proyecto extends CI_Controller {
 	//funcion para que sea de index, en reemplazo de index.php
 	public function index()
 	{
-		$this->load->view('login');
+		$this->load->view('index');
 	}
 	
 	
