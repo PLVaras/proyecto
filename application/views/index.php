@@ -56,31 +56,14 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Solutions</a></li>
-              <li><a href="#">Portfolio</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Peliculas</a></li>
+              <li><a href="#">Contacto</a></li>
             </ul>
           </div><!--/.navbar-collapse -->
         </div>
       </div>
-      <div class="mini-menu">
-            <label>
-          <select class="selectnav">
-            <option value="#" selected="">Home</option>
-            <option value="#">About</option>
-            <option value="#">→ Another action</option>
-            <option value="#">→ Something else here</option>
-            <option value="#">→ Another action</option>
-            <option value="#">→ Something else here</option>
-            <option value="#">Services</option>
-            <option value="#">Work</option>
-            <option value="#">Contact</option>
-          </select>
-          </label>
-          </div>
+      
     </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -92,102 +75,55 @@
           <div class="item active">
             <img src="img/banner-image.jpg" alt="">
             <div class="carousel-caption">
-              <h1>Morbi semuis</h1>
-              <h2>Praesent dapibus, neque id cursus faucibus tortas augue eu vulputate</h2>
-              <a href="#" class="btn">facilis</a>
+              <h1>Lo mejor del Cine</h1>
+              <h2>Las Encontraras en Las Distintas Calidades(DVD y HD)    </h2>
+              <a href="#" class="btn">Consultanos por Disponibilidad</a>
             </div>
           </div>
-          <div class="item">
-            <img src="img/banner-image.jpg" alt="">
-            <div class="carousel-caption">
-              <h1>Morbi semuis</h1>
-              <h2>Praesent dapibus, neque id cursus faucibus tortas augue eu vulputate</h2>
-              <a href="#" class="btn">facilis</a>
-            </div>
-          </div>
-          <div class="item">
-            <img src="img/banner-image.jpg" alt="">
-            <div class="carousel-caption">
-              <h1>Morbi semuis</h1>
-              <h2>Praesent dapibus, neque id cursus faucibus tortas augue eu vulputate</h2>
-              <a href="#" class="btn">facilis</a>
-            </div>
-          </div>
-        </div>
+          
 
   <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <i class="fw-icon-chevron-left"></i>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <i class="fw-icon-chevron-right"></i>
-      </a>
+      
     </div>
     </div>
     <div class="container">
       <div class="featured-block">
+      <?= form_open("Proyecto/BuscarPelicula") ?>
+      	<label>Ingrese Titulo a Buscar:</label>
+      	<input  type="text" name="valorBuscado"/>
+      	<button type="submit" name="btnBuscador">
+      		<i class="fa fa-search"></i>
+      	</button>
+      </form>
         <!-- Example row of columns -->
         <div class="row">
-          <div class="col-md-3">
-            <div class="block">
-            <div class="thumbnail">
-              <img src="img/img1.jpg" alt="" class="img-responsive">
-              <div class="caption">
-                <h1>Lorem ipsum</h1>
-                <p>Cuibstui ipsum dolor sit amet, consectetuer adipiscing eli onec odio cuisque volutpat mattis</p>
-                <a class="btn btn-primary" href="#">more</a>
-                
-                <button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-                
-              </div>
-              </div>
-            </div>
-            </div>
-            <div class="col-md-3">
-              <div class="block">
-                <div class="thumbnail">
-                    <img src="img/img2.jpg" alt="" class="img-responsive">
-                    <div class="caption">
-                      <h1>Fusce lacinia arcu</h1>
-                      <p>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis ctor, ultrices ut, element</p>
-                      <a class="btn" href="#">more</a>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="block">
-                <div class="thumbnail">
-                  <img src="img/img3.jpg" alt="" class="img-responsive">
-                  <div class="caption">
-                    <h1>Morbiin semquis</h1>
-                    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean</p>
-                    <a class="btn" href="#">more</a>
-                  </div>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-            <div class="block">
-            <div class="thumbnail">
-              <img src="img/img4.jpg" alt="" class="img-responsive">
-              <div class="caption">
-                <h1>Aliquam lectus</h1>
-                <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, mod in, pharetra ultrici</p>
-                <a class="btn" href="#">more</a>
-              </div>
-              </div>
-            </div>
-            </div>
-            
-          </div>
+        <?php
+        	if($TodasLasPeliculas->result()){
+				//si hay peliculas las cargo en los cuadros
+				foreach($TodasLasPeliculas as $unaPelicula){
+					echo '
+					<div class="col-md-3">
+			            <div class="block">
+			            <div class="thumbnail">
+			              <img src="img/img1.jpg" alt="" class="img-responsive">
+			              <div class="caption">
+			                <h1>Lorem ipsum</h1>
+			                <p>Cuibstui ipsum dolor sit amet, consectetuer adipiscing eli onec odio cuisque volutpat mattis</p>
+			                <a class="btn btn-primary" href="#">more</a>
+			              </div>
+			              </div>
+			            </div>
+			            </div>
+			       
+					';
+				}
+			}
+			else{
+				echo "no hay peliculas";
+			}
+        
+        ?>
+             </div>
           
         </div> 
         <div class="ruler"></div>  

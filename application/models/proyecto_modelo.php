@@ -17,4 +17,10 @@ class Proyecto_modelo extends CI_Model {
 		return $this->db->get_where('login',$datos);
 		
 	}
+	public function traeTodasLasPeliculas()
+	{
+		
+		return $this->db->query("SELECT * FROM `pelicula` LIMIT 0,1000");
+		
+	}
 }
