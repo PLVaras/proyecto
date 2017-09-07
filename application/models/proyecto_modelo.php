@@ -10,11 +10,7 @@ class Proyecto_modelo extends CI_Model {
 	
 	public function buscaLogin($datosRecibidos)
 	{
-		$datos=array(
-		'user'=>$datosRecibidos['user'],
-		'pass'=>$datosRecibidos['pass'],
-		);
-		return $this->db->get_where('login',$datos);
+		return $this->db->get_where('login',$datosRecibidos);
 		
 	}
 	public function traeTodasLasPeliculas()
@@ -38,4 +34,9 @@ class Proyecto_modelo extends CI_Model {
 		
 		$this->db->insert('login',$datosLogin);
 	}
+	public function buscaporID($id)
+	{
+		return $this->db->query("select * from usuario where idusuario=$id");
+	}
+	
 }

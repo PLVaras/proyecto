@@ -56,12 +56,11 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
               <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#"></a></li>
-             <?php
+              <?php
               	if(isset($nombre_usuario)){
 			  ?>
 			   <li><a href="#" style="color:yellow">Bienvenido usuario <?php echo $nombre_usuario." ".$apellido_usuario; ?></a></li>
@@ -75,6 +74,7 @@
 			   <?php	
 				}
               ?>
+              
             </ul>
           </div><!--/.navbar-collapse -->
         </div>
@@ -103,89 +103,9 @@
     </div>
     </div>
     <div class="container">
-      <div class="featured-block">
-       <div class="row">
-                  <div class="col-lg-6">
-                      <section class="panel">
-                          <header class="panel-heading">
-                              <h2>Panel de Registro</h2>
-                          </header>
-                          <div class="panel-body">
-                          <center>
-                          	<span style="color:green">
-                          		<?php 
-                          			if($mensaje){
-										echo "$mensaje";
-									}
-                          		?>
-                          	</span>
-                          </center>
-                              <?= form_open("index.php/Proyecto/login") ?>
-                              <legend>Datos del Cliente</legend>
-                                  <div class="form-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" required="true">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="apellido">Apellido</label>
-                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" required="true">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="direccion">Direccion</label>
-                                      <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion de su casa" required="true">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="telefono">Telefono</label>
-                                      <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el Telefono de contacto" required="true">
-                                  </div>
-                                  <hr>
-                                  <legend>Datos de Login</legend>
-                                  <div class="form-group">
-                                      <label for="usuario">Nombre de Usuario</label>
-                                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el nombre para login" required="true">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="clave">Clave</label>
-                                      <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la Clave para Ingreso" required="true">
-                                  </div>
-                                  <button type="submit" name="btnRegistro" class="btn btn-info">Registrarme como Usuario</button>
-                              </form>
-
-                          </div>
-                      </section>
-                  </div>
-                <div class="col-lg-6">
-                      <section class="panel">
-                          <header class="panel-heading">
-                              Panel de Login
-                          </header>
-                          <div class="panel-body">
-                               <?= form_open("index.php/Proyecto/buscaLogin") ?>
-                                  
-                                  <legend>Datos de Login</legend>
-                                  <div class="form-group">
-                                      <label for="usuario">Nombre de Usuario</label>
-                                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el nombre para login" required="true">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="clave">Clave</label>
-                                      <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la Clave para Ingreso" required="true">
-                                  </div>
-                                  <button type="submit" name="btnLogin" class="btn btn-info">Ingresar</button>
-                              </form>
-                          </div>
-                      </section>
-                    
-                  </div>
-              </div>
- 
-      
-        <!-- Example row of columns -->
-        <div class="row">
-      
-             </div>
+  
           
-        </div> 
+    </div> 
         
     
       <div class="footer-wrapper">

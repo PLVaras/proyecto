@@ -57,10 +57,24 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
-              <li><a href="#">Peliculas</a></li>
+              <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#"></a></li>
-              <li><a href="<?php echo site_url("index.php/Proyecto/login"); ?>"><i class="fa fa-user"></i> registro/login</a></li>
+              <?php
+              	if(isset($nombre_usuario)){
+			  ?>
+			   <li><a href="#" style="color:yellow">Bienvenido usuario <?php echo $nombre_usuario." ".$apellido_usuario; ?></a></li>
+			  <li><a href="<?php echo site_url("index.php/Proyecto/salirLogin"); ?>"><i class="fa fa-user"></i> Salir</a></li>
+			  
+			  <?php
+				}else
+				{
+			   ?>
+			   <li><a href="<?php echo site_url("index.php/Proyecto/login"); ?>"><i class="fa fa-user"></i> registro/login</a></li>
+			   <?php	
+				}
+              ?>
+              
             </ul>
           </div><!--/.navbar-collapse -->
         </div>

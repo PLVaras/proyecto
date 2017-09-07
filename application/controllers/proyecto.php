@@ -9,16 +9,35 @@ class Proyecto extends CI_Controller {
 			//preparo un array para buscar por filtro
 			$valorBuscado=$this->input->post('valorBuscado');
 			 
-			//preparo un array para obtener el resultado  del filtro de busqueda
-			$datos=array(
-			'TodasLasPeliculas'=>$this->proyecto_modelo->traeAlgunasPeliculas($valorBuscado),
-			);
+			 if(isset($this->session->userdata['idusuario'])){
+			 	//preparo un array para obtener el resultado  del filtro de busqueda
+				$datos=array(
+				'TodasLasPeliculas'=>$this->proyecto_modelo->traeAlgunasPeliculas($valorBuscado),
+				'nombre_usuario'=>$this->session->userdata['nombre_usuario'],
+				'apellido_usuario'=>$this->session->userdata['apellido_usuario'],
+				);
+			 }else{
+			 	//preparo un array para obtener el resultado  del filtro de busqueda
+				$datos=array(
+				'TodasLasPeliculas'=>$this->proyecto_modelo->traeAlgunasPeliculas($valorBuscado),
+				);
+			 }
+			
 			$this->load->view('index',$datos);
 		}else{
-			//aqui vamos a leer y traer desde la BD la info de las Peliculas
-			$datos=array(
+			if(isset($this->session->userdata['idusuario'])){
+			 	//preparo un array para obtener el resultado  del filtro de busqueda
+				$datos=array(
 				'TodasLasPeliculas'=>$this->proyecto_modelo->traeTodasLasPeliculas(),
-			);
+				'nombre_usuario'=>$this->session->userdata['nombre_usuario'],
+				'apellido_usuario'=>$this->session->userdata['apellido_usuario'],
+				);
+			 }else{
+				//aqui vamos a leer y traer desde la BD la info de las Peliculas
+				$datos=array(
+					'TodasLasPeliculas'=>$this->proyecto_modelo->traeTodasLasPeliculas(),
+				);
+			}
 			$this->load->view('index',$datos);
 		}
 		
@@ -59,6 +78,47 @@ class Proyecto extends CI_Controller {
 	}
 	public function buscaLogin()
 	{
+		if($_POST){
+			$datosLogin=array(
+			'nombre_usuario'=>$this->input->post('usuario'),
+			'clave'=>$this->input->post('clave'),
+			);
+			$resultado = $this->proyecto_modelo->buscaLogin($datosLogin);
+			//verifico si encontro algo
+			if($resultado->result()){
+				//si es asi creo una session para guardar datos en memoria
+				$this->session->set_userdata('idusuario',$resultado->row()->idusuario);
+				//busco a la persona y traigo su nombre y apellido
+				$misDatos = $this->proyecto_modelo->buscaporID($resultado->row()->idusuario);
+				//creo datos de session con nombre y apellido
+				$this->session->set_userdata('nombre_usuario',$misDatos->row()->nombre);
+				$this->session->set_userdata('apellido_usuario',$misDatos->row()->apellido);
+				
+				//luego lo redirijo al inicio
+				redirect("index.php/Proyecto/index");
+			}
+		}
 	}
-	
+	public function salirLogin()
+	{
+		$this->session->unset_userdata('idusuario');
+		$this->session->unset_userdata('nombre_usuario');
+		$this->session->unset_userdata('apellido_usuario');
+		
+		redirect("index.php/Proyecto/index");
+		
+		
+	}
+	public function misCompras()
+	{
+		if($_POST){
+			
+		
+		}else{
+			$datos=array(
+				'mensaje'=>"",
+			);
+			$this->load->view('miscompras',$datos);
+		}
+	}
 }
