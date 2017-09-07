@@ -56,6 +56,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
               <li><a href="#">Peliculas</a></li>
               <li><a href="#">Contacto</a></li>
@@ -90,42 +91,85 @@
     </div>
     <div class="container">
       <div class="featured-block">
-      <?= form_open("index.php/Proyecto/index") ?>
-      	<label>Ingrese Titulo a Buscar:</label>
-      	<input  type="text" name="valorBuscado"/>
-      	<button type="submit" name="btnBuscador">
-      		<i class="fa fa-search"></i>
-      	</button>
-      </form>
+       <div class="row">
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              <h2>Panel de Registro</h2>
+                          </header>
+                          <div class="panel-body">
+                          <center>
+                          	<span style="color:green">
+                          		<?php 
+                          			if($mensaje){
+										echo "$mensaje";
+									}
+                          		?>
+                          	</span>
+                          </center>
+                              <?= form_open("index.php/Proyecto/login") ?>
+                              <legend>Datos del Cliente</legend>
+                                  <div class="form-group">
+                                      <label for="nombre">Nombre</label>
+                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el Nombre" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="apellido">Apellido</label>
+                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el Apellido" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="direccion">Direccion</label>
+                                      <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion de su casa" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="telefono">Telefono</label>
+                                      <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el Telefono de contacto" required="true">
+                                  </div>
+                                  <hr>
+                                  <legend>Datos de Login</legend>
+                                  <div class="form-group">
+                                      <label for="usuario">Nombre de Usuario</label>
+                                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el nombre para login" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="clave">Clave</label>
+                                      <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la Clave para Ingreso" required="true">
+                                  </div>
+                                  <button type="submit" name="btnRegistro" class="btn btn-info">Registrarme como Usuario</button>
+                              </form>
+
+                          </div>
+                      </section>
+                  </div>
+                <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              Panel de Login
+                          </header>
+                          <div class="panel-body">
+                               <?= form_open("index.php/Proyecto/buscaLogin") ?>
+                                  
+                                  <legend>Datos de Login</legend>
+                                  <div class="form-group">
+                                      <label for="usuario">Nombre de Usuario</label>
+                                      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el nombre para login" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="clave">Clave</label>
+                                      <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingrese la Clave para Ingreso" required="true">
+                                  </div>
+                                  <button type="submit" name="btnLogin" class="btn btn-info">Ingresar</button>
+                              </form>
+                          </div>
+                      </section>
+                    
+                  </div>
+              </div>
+ 
+      
         <!-- Example row of columns -->
         <div class="row">
-        <?php
-        	if($TodasLasPeliculas->result()){
-				//si hay peliculas las cargo en los cuadros
-				foreach($TodasLasPeliculas->result() as $unaPelicula){
-					echo '
-					<div class="col-md-3">
-			            <div class="block">
-			            <div class="thumbnail">
-			              <img src="'.base_url("img/cover/".$unaPelicula->imagen).'" alt="" class="img-responsive">
-			              <div class="caption">
-			                <h1>'.$unaPelicula->nombre_pel.'</h1>
-			                <p>'.$unaPelicula->descripcion.'</p>
-			                <a class="btn btn-primary" href="#">Alquilar</a>
-			              </div>
-			              </div>
-			            </div>
-			            </div>
-			       
-					';
-					
-				}
-			}
-			else{
-				echo "no hay peliculas";
-			}
-        
-        ?>
+      
              </div>
           
         </div> 
