@@ -105,21 +105,22 @@
     <div class="container">
       <div class="featured-block">
        <div class="row">
-                  <div class="col-lg-6">
-                      <section class="panel">
-                          <header class="panel-heading">
-                              <h2>Panel de Registro</h2>
-                          </header>
-                          <div class="panel-body">
-                          <center>
+      					 <center>
                           	<span style="color:green">
                           		<?php 
                           			if($mensaje){
 										echo "$mensaje";
 									}
                           		?>
-                          	</span>
-                          </center>
+                          	</span></center>
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              <h2>Panel de Registro</h2>
+                          </header>
+                          <div class="panel-body">
+                          
+                          
                               <?= form_open("index.php/Proyecto/login") ?>
                               <legend>Datos del Cliente</legend>
                                   <div class="form-group">

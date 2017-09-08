@@ -56,11 +56,12 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
               <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
               <li><a href="#">Contacto</a></li>
               <li><a href="#"></a></li>
-              <?php
+             <?php
               	if(isset($nombre_usuario)){
 			  ?>
 			   <li><a href="#" style="color:yellow">Bienvenido usuario <?php echo $nombre_usuario." ".$apellido_usuario; ?></a></li>
@@ -74,7 +75,6 @@
 			   <?php	
 				}
               ?>
-              
             </ul>
           </div><!--/.navbar-collapse -->
         </div>

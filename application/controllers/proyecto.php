@@ -96,6 +96,11 @@ class Proyecto extends CI_Controller {
 				
 				//luego lo redirijo al inicio
 				redirect("index.php/Proyecto/index");
+			}else{
+				$datos=array(
+				'mensaje'=>"Error, no se encuentra el Usuario o Datos mal Ingresados",
+			);
+			$this->load->view('login',$datos);
 			}
 		}
 	}
@@ -115,9 +120,19 @@ class Proyecto extends CI_Controller {
 			
 		
 		}else{
-			$datos=array(
-				'mensaje'=>"",
-			);
+			if(isset($this->session->userdata['idusuario'])){
+			 	//preparo un array para obtener el resultado  del filtro de busqueda
+				$datos=array(
+				'TodasMisCompras'=>"",
+				'nombre_usuario'=>$this->session->userdata['nombre_usuario'],
+				'apellido_usuario'=>$this->session->userdata['apellido_usuario'],
+				);
+			 }else{
+				//aqui vamos a leer y traer desde la BD la info de las Peliculas
+				$datos=array(
+					'TodasMisCompras'=>"",
+				);
+			}
 			$this->load->view('miscompras',$datos);
 		}
 	}
