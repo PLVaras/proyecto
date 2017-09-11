@@ -58,7 +58,7 @@
             <ul class="nav navbar-nav">
               
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
-              <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
+             
               
               <li><a href="#"></a></li>
              <?php
@@ -68,13 +68,9 @@
 			  <li><a href="<?php echo site_url("index.php/Proyecto/salirLogin"); ?>"><i class="fa fa-user"></i> Salir</a></li>
 			  
 			  <?php
-				}else
-				{
-			   ?>
-			   <li><a href="<?php echo site_url("index.php/Proyecto/login"); ?>"><i class="fa fa-user"></i> registro/login</a></li>
-			   <?php	
 				}
-              ?>
+			   ?>
+			  
             </ul>
           </div><!--/.navbar-collapse -->
         </div>
@@ -83,16 +79,107 @@
     </div>
 
 
-<!--desde aqui los cambios de contenidos-->
- <div class="row">
+    
+    <div class="container">
+      <div class="featured-block">
+       <div class="row">
+      	<?php 
+        	if($mensaje){
+        ?>
+        <div class="alert alert-warning fade in">
+             <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+             </button>
+             <h4>
+             	<i class="fa fa-ok-sign"></i>
+                                      <?php echo $mensaje;?>
+             </h4>
+             
+        </div>
+		<?php
+				}
+        ?>
+        
+       			
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              <h2>Panel del Administrador</h2>
+                          </header>
+                          <div class="panel-body">
+                          
+                          <form action="<?php echo site_url("index.php/Proyecto/admin") ?>" method="post" enctype="multipart/form-data">
+                              
+                              <legend>Datos de la Pelicula</legend>
+                                  <div class="form-group">
+                                      <label for="nombre">Nombre de la Pelicula</label>
+                                      <input type="text" class="form-control" id="nombre_pel" name="nombre_pel" placeholder="Ingrese el Nombre de la Pelicula" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="apellido">Precio</label>
+                                      <input type="text" class="form-control" id="precio" name="precio" placeholder="Ingrese el Precio" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="direccion">Stock</label>
+                                      <input type="text" class="form-control" id="stock" name="stock" placeholder="Ingrese el Stock" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="telefono">Descripci&oacute;n</label>
+                                      <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese una descripcion" required="true">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="telefono">Genero</label>
+                                      <select name="idgenero" class="form-control">
+                                      <?php
+                                      	foreach($Generos->result() as $unGenero){
+											echo'
+												<option value="'.$unGenero->idgenero.'">'.$unGenero->nombre_genero.'</option>	
+											';
+										}
+                                      
+                                      ?> 	
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="telefono">Categoria</label>
+                                      <select name="idcategoria" class="form-control">
+                                      <?php
+                                      	foreach($Categorias->result() as $unaCategoria){
+											echo'
+												<option value="'.$unaCategoria->idcategoria.'">'.$unaCategoria->nombre_categoria.'</option>	
+											';
+										}
+                                      
+                                      ?> 
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="telefono">Imagen para la Pelicula:</label>
+                                      <input type="file" class="form-control" id="imagen" name="imagen">
+                                  </div>
+                                  <button type="submit" name="btnRegistroPelicula" class="btn btn-info">Registrar Pelicula</button>
+                              </form>
+
+                          </div>
+                      </section>
+                  </div>
+             
+              </div>
+ 
+      
+        <!-- Example row of columns -->
+        <div class="row">
+      <!--desde aqui los cambios de contenidos-->
+
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Mis Compras (<span style="color:red">Se recuerda a los Clientes, que las reservan seran confirmadas por telefono, GRACIAS</span>)
+                              Compras de los usuarios para verificar
                           </header>
                           <table class="table table-striped table-advance table-hover">
                               <thead>
                               <tr>
+                                  <th><i class="fa fa-bullhorn"></i> Cliente</th>
                                   <th><i class="fa fa-bullhorn"></i> Pelicula</th>
                                   <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descripcion</th>
                                   <th><i class="fa fa-bookmark"></i> Precio</th>
@@ -104,8 +191,8 @@
                               <tbody>
                               
                              <?php
-                             	if($TodasMisCompras->result()){
-									foreach($TodasMisCompras->result() as $unaCompra){
+                             	if($TodasLasCompras->result()){
+									foreach($TodasLasCompras->result() as $unaCompra){
 										echo'
 											<tr>
 			                                  <td>'.$unaCompra->nombre_pel.'</td>
@@ -123,12 +210,20 @@
 			                                      <a href="'.site_url("index.php/Proyecto/BorrarAlquiler/".$unaCompra->idalquiler).'"><i class="fa fa-trash-o "></i></a>
 			                                      
 			                                      </button>
+			                                      <button class="btn btn-success btn-xs">
+			                                      <a href="'.site_url("index.php/Proyecto/ActivaAlquiler/".$unaCompra->idalquiler).'"><i class="fa fa-check"></i></a>
+			                                      
+			                                      </button>
 			                                  </td>';
 											 }elseif($unaCompra->estado=="No Stock"){
 											 	echo '<td><span class="label label-danger label-mini">'.$unaCompra->estado.'</span></td>';
 											 	echo'<td>
 			                                      <button class="btn btn-danger btn-xs">
 			                                      <a href="'.site_url("index.php/Proyecto/BorrarAlquiler/".$unaCompra->idalquiler).'"><i class="fa fa-trash-o "></i></a>
+			                                      
+			                                      </button>
+			                                      <button class="btn btn-success btn-xs">
+			                                      <a href="'.site_url("index.php/Proyecto/ActivaAlquiler/".$unaCompra->idalquiler).'"><i class="fa fa-check"></i></a>
 			                                      
 			                                      </button>
 			                                  </td>';
@@ -138,8 +233,8 @@
 											 	echo'<td>
 			                                      <button class="btn btn-danger btn-xs">
 			                                      <a href="'.site_url("index.php/Proyecto/BorrarAlquiler/".$unaCompra->idalquiler).'"><i class="fa fa-trash-o "></i></a>
-			                                      
 			                                      </button>
+			                                      
 			                                  </td>';
 			                                  
 											 }
@@ -171,6 +266,11 @@
 
 
 <!--hasta aqui-->
+             </div>
+          
+        </div> 
+        
+    
       <div class="footer-wrapper">
         
       <div class="copy-rights">

@@ -38,5 +38,47 @@ class Proyecto_modelo extends CI_Model {
 	{
 		return $this->db->query("select * from usuario where idusuario=$id");
 	}
+	public function traeInfoPelicula($idPelicula){
+		
+		return $this->db->query("select * from pelicula where idpelicula=$idPelicula");
+	}
+	public function insertarAlquiler($Alquiler){
+		
+		return $this->db->insert('alquiler',$Alquiler);
+	}
+	public function registrarPreguntaContacto($datosContacto){
+		
+		return $this->db->insert('contacto',$datosContacto);
+	}
+	public function traeMisCompras($idUsuario){
+		
+		return $this->db->query("select alquiler.*, pelicula.*, usuario.* from alquiler, usuario, pelicula where alquiler.idusuario = usuario.idusuario and alquiler.idpelicula = pelicula.idpelicula and alquiler.idusuario=$idUsuario");
+	}
+	public function borraPeliculaAquilada($idAlquiler){
+		
+		$this->db->query("DELETE FROM `dbproyecto`.`alquiler` WHERE `alquiler`.`idalquiler` = $idAlquiler");
+	}
 	
+	
+	//para admin
+	public function traeCategorias(){
+		
+		return $this->db->query("select * from categoria");
+	}
+	public function traeGeneros(){
+		
+		return $this->db->query("select * from genero");
+	}
+	public function insertarPelicula($datos){
+		
+		return $this->db->insert('pelicula',$datos);
+	}
+	public function traeLasCompras(){
+		
+		return $this->db->query("select alquiler.*, pelicula.*, usuario.* from alquiler, usuario, pelicula where alquiler.idusuario = usuario.idusuario and alquiler.idpelicula = pelicula.idpelicula");
+	}
+	public function ActivaAlquiler($idAlquiler){
+		
+		return $this->db->query("UPDATE `alquiler` SET `estado`='Reserva OK' WHERE (`idalquiler`='$idAlquiler')");
+	}
 }

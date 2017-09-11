@@ -59,7 +59,7 @@
               
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
               <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
-              <li><a href="#">Contacto</a></li>
+              
               <li><a href="#"></a></li>
              <?php
               	if(isset($nombre_usuario)){
@@ -82,37 +82,29 @@
       
     </div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="banner">
-      <div id="carousel-example-generic" class="carousel slide">
-  
-  <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="img/banner-image.jpg" alt="">
-            <div class="carousel-caption">
-              <h1>Lo mejor del Cine</h1>
-              <h2>Las Encontraras en Las Distintas Calidades(DVD y HD)    </h2>
-              <a href="#" class="btn">Consultanos por Disponibilidad</a>
-            </div>
-          </div>
-          
 
-  <!-- Controls -->
-      
-    </div>
-    </div>
+    
     <div class="container">
       <div class="featured-block">
        <div class="row">
-      					 <center>
-                          	<span style="color:green">
-                          		<?php 
-                          			if($mensaje){
-										echo "$mensaje";
-									}
-                          		?>
-                          	</span></center>
+      	<?php 
+        	if($mensaje){
+        ?>
+        <div class="alert alert-warning fade in">
+             <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+             </button>
+             <h4>
+             	<i class="fa fa-ok-sign"></i>
+                                      <?php echo $mensaje;?>
+             </h4>
+             
+        </div>
+		<?php
+				}
+        ?>
+        
+       			
                   <div class="col-lg-6">
                       <section class="panel">
                           <header class="panel-heading">
