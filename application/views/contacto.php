@@ -154,7 +154,7 @@
         <div class="row">
           
             <div class="col-md-6">
-              Trabajo Final de.... <a href="#">tu correo</a>
+              Trabajo Final de Programacion III - Pedro Luis Varas <a href="#">pedroluisvaras@gmail.com</a>
             </div>
             <div class="col-md-6">
               <i class="fa fa-video-camera"></i>
