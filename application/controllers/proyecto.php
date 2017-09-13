@@ -285,4 +285,19 @@ class Proyecto extends CI_Controller {
 		
 		
 	}
+	
+	//creo una funcion para ver algunas estadisticas
+	public function estadistica(){
+		//armando array para enviar datos
+		$datos=array(
+					'mensaje'=>"",
+					'cantpel'=>$this->proyecto_modelo->traerCantPel(),
+					'cantusuario'=>$this->proyecto_modelo->traerCantClientes(),
+					'cantalquiler'=>$this->proyecto_modelo->traerCantAlquiler(),
+					'montoalquiler'=>$this->proyecto_modelo->traerMontoAlquiler(),
+				);
+		//cargo una pagina desde las vistas
+		$this->load->view('informacion',$datos);
+		
+	}
 }

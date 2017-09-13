@@ -56,25 +56,18 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              
               <li><a href="<?php echo site_url("index.php/Proyecto/index"); ?>">Inicio</a></li>
               <li><a href="<?php echo site_url("index.php/Proyecto/misCompras"); ?>">Mis Compras</a></li>
               
               <li><a href="#"></a></li>
-              <?php
+             <?php
               	if(isset($nombre_usuario)){
 			  ?>
 			   <li><a href="#" style="color:yellow">Bienvenido usuario <?php echo $nombre_usuario." ".$apellido_usuario; ?></a></li>
 			  <li><a href="<?php echo site_url("index.php/Proyecto/salirLogin"); ?>"><i class="fa fa-user"></i> Salir</a></li>
-			  		
+			  
 			  <?php
-			  //pregunta si existe el admin 
-			  		if(isset($admin)){
-				?>
-				<li><a href="<?php echo site_url("index.php/Proyecto/admin"); ?>">Panel de Admin</a></li>
-				<li><a href="<?php echo site_url("index.php/Proyecto/estadistica"); ?>">Estadistica</a></li>
-				
-				<?php
-					}
 				}else
 				{
 			   ?>
@@ -82,7 +75,6 @@
 			   <?php	
 				}
               ?>
-              
             </ul>
           </div><!--/.navbar-collapse -->
         </div>
@@ -90,42 +82,15 @@
       
     </div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="banner">
-      <div id="carousel-example-generic" class="carousel slide">
-  
-  <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="<?php echo base_url("img/banner-image.jpg"); ?>" alt="">
-            <div class="carousel-caption">
-              <h1>Lo mejor del Cine</h1>
-              <h2>Las Encontraras en Las Distintas Calidades(DVD y HD)    </h2>
-              <a href="<?php echo site_url("index.php/Proyecto/contacto"); ?>" class="btn">Consultanos por Disponibilidad</a>
-            </div>
-          </div>
-          
 
-  <!-- Controls -->
-      
-    </div>
-    </div>
-    </div>
+    
     <div class="container">
       <div class="featured-block">
-      <?=form_open("index.php/Proyecto/index") ?>
-      	<label>Ingrese Titulo a Buscar:</label>
-      	<input  type="text" name="valorBuscado"/>
-      	<button type="submit" name="btnBuscador">
-      		<i class="fa fa-search"></i>
-      	</button>
-      </form>
-        <!-- Example row of columns -->
-        <div class="row">
-        <?php 
+       <div class="row">
+      	<?php 
         	if($mensaje){
         ?>
-        <div class="alert alert-success alert-block fade in">
+        <div class="alert alert-success fade in">
              <button data-dismiss="alert" class="close close-sm" type="button">
                    <i class="fa fa-times"></i>
              </button>
@@ -139,43 +104,70 @@
 				}
         ?>
         
-       							 
-        <?php
-        	if($TodasLasPeliculas->result()){
-				//si hay peliculas las cargo en los cuadros
-				foreach($TodasLasPeliculas->result() as $unaPelicula){
-					echo '
-					<div class="col-md-3">
-			            <div class="block">
-			            <div class="thumbnail">
-			              <img src="'.base_url("img/cover/".$unaPelicula->imagen).'" alt="" class="img-responsive">
-			              <div class="caption">
-			                <h1>'.$unaPelicula->nombre_pel.'</h1>
-			                <p>'.$unaPelicula->descripcion.'</p>
-			              ';
-			             if(isset($nombre_usuario)){
-						 	echo '<a class="btn btn-primary" href="'.site_url("index.php/Proyecto/Alquiler/".$unaPelicula->idpelicula).'">Alquilar</a>';
-						 } 
-						 else{
-						 	echo '<span style="color: red;">Debe Logear para Comprar</span>';
-						 }
-			               
-			                
-			            echo'
-			              </div>
-			              </div>
-			            </div>
-			            </div>
-			       
-					';
-					
-				}
-			}
-			else{
-				echo "no hay peliculas";
-			}
-        
-        ?>
+       			
+                  
+            <!--state overview start-->
+              <div class="row state-overview">
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-user"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="">
+                                  <?php echo $cantusuario; ?>
+                              </h1>
+                              <p>Clientes</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-video-camera"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="">
+                                  <?php echo $cantpel; ?>
+                              </h1>
+                              <p>Peliculas</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol yellow">
+                              <i class="fa fa-shopping-cart"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="">
+                                  <?php echo $cantalquiler; ?>
+                              </h1>
+                              <p>Alquileres</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-bar-chart-o"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="">
+                                  $ <?php echo $montoalquiler; ?>
+                              </h1>
+                              <p>Total Recaudado</p>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <!--state overview end--> 
+       </div>
+ 
+      
+        <!-- Example row of columns -->
+        <div class="row">
+      
              </div>
           
         </div> 

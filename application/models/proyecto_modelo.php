@@ -81,4 +81,29 @@ class Proyecto_modelo extends CI_Model {
 		
 		return $this->db->query("UPDATE `alquiler` SET `estado`='Reserva OK' WHERE (`idalquiler`='$idAlquiler')");
 	}
+	
+	//para estadisticas
+	public function traerCantPel()
+	{
+		$consulta=$this->db->query("select count(idpelicula) as cantidad FROM pelicula");
+		return $consulta->row()->cantidad;
+	}
+	
+	public function traerCantClientes()
+	{
+		$consulta=$this->db->query("select count(idusuario) as cantidad FROM usuario");
+		return $consulta->row()->cantidad;
+	}
+	
+	public function traerCantAlquiler()
+	{
+		$consulta=$this->db->query("select count(idalquiler) as cantidad FROM alquiler");
+		return $consulta->row()->cantidad;
+	}
+	
+	public function traerMontoAlquiler()
+	{
+		$consulta=$this->db->query("select sum(monto) as cantidad FROM alquiler");
+		return $consulta->row()->cantidad;
+	}
 }
